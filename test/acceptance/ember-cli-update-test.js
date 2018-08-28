@@ -14,11 +14,8 @@ const {
   assertNoUnstaged,
   assertCodemodRan
 } = require('../helpers/assertions');
-const semver = require('semver');
 
 const commitMessage = 'add files';
-
-const shouldSkipCodemods = process.platform === 'linux' && semver.satisfies(semver.valid(process.version), '6');
 
 describe('Acceptance - ember-cli-update', function() {
   this.timeout(30 * 1000);
@@ -106,7 +103,7 @@ describe('Acceptance - ember-cli-update', function() {
     });
   });
 
-  (shouldSkipCodemods ? it.skip : it)('runs codemods', function() {
+  it('runs codemods', function() {
     this.timeout(5 * 60 * 1000);
 
     let {
